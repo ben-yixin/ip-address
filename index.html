@@ -7,6 +7,18 @@
     <title>IP Address</title>
 </head>
 <body>
-    
+    <h1>IP Address:</h1>
+    <h2 id="address">0.0.0.0</h2>
+    <script>
+    fetch('https://api.ipify.org?format=json')
+    .then(res => {
+        console.log(res)
+        return res.json()
+    })
+    .then(data => {
+        console.log(data.ip)
+        document.getElementById('address').innerHTML = data.ip;
+    })
+    </script>
 </body>
 </html>
