@@ -20,7 +20,7 @@
         function isPrivateIP(ip){
             var parts = ip.split('.');
             return parts[0] === '10' ||
-            (parts[0] === '172' && (parseInt(parts[1]) >= 16 && parseInt(parts[1] <= 31))) || 
+            (parts[0] === '172' && (parseInt(parts[1]) >= 16 && parseInt(parts[1]) <= 31)) || 
             (parts[0] === '192' && parts[1] === '168');
         }
         fetch('https://api.ipify.org?format=json')
@@ -29,8 +29,15 @@
             return res.json();
         })
         .then(data => {
-            console.log(data.ip);
-            document.getElementById('address').innerHTML = data.ip;
+            console.log(data);
+            //Set var private to true to test a private IP
+            var private = false;
+
+            var testOne = '192.168.0.0';
+            var testTwo = '172.20.0.0';
+            var ip = private ? testTwo : data.ip;
+            var elem = document.getElementById('address');
+            elem.innerHTML = isPrivateIP(ip) ? "Not a Public IP" : data.ip;
         });
     </script>
 </body>
