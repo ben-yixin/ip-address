@@ -29,11 +29,9 @@
         }
         fetch('https://api.ipify.org?format=json')
         .then(res => {
-            console.log(res);
             return res.json();
         })
         .then(data => {
-            console.log(data);
             //Set var private to true to test a private IP
             var private = false;
 
